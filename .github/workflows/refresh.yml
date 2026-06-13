@@ -1,0 +1,41 @@
+name: refresh-jobs
+
+on:
+  schedule:
+    - cron: '30 10 * * *'    # 10:30 UTC daily, 30 min after upstream's 10:00 refresh
+  workflow_dispatch:
+
+permissions:
+  contents: write            # lets the action push the snapshot back
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Install psql client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Run pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: bash scripts/refresh.sh
+
+      - name: Export snapshot
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          mkdir -p data
+          psql "$DATABASE_URL" -c "\copy (SELECT * FROM v_jobs_clean ORDER BY job_id) TO 'data/jobs_latest.csv' WITH (FORMAT csv, HEADER true)"
+
+      - name: Commit snapshot
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/jobs_latest.csv
+          git commit -m "data refresh $(date -u +%F)" || echo "no changes"
+          git push

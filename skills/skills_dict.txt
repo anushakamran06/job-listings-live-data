@@ -1,0 +1,90 @@
+# starter skill lexicon, one skill per line
+
+# --- technical / data ---
+python
+sql
+r
+java
+javascript
+excel
+power bi
+tableau
+data analysis
+data visualisation
+machine learning
+statistics
+sas
+spss
+gis
+etl
+database management
+cloud computing
+cybersecurity
+network security
+
+# --- policy / public sector ---
+policy analysis
+policy development
+policy implementation
+public administration
+governance
+regulatory compliance
+legislation
+public engagement
+stakeholder engagement
+stakeholder management
+strategic planning
+programme management
+grants administration
+
+# --- finance / procurement ---
+budgeting
+financial analysis
+accounting
+audit
+procurement
+contract management
+forecasting
+financial reporting
+
+# --- hr / admin ---
+recruitment
+talent management
+performance management
+payroll
+employee relations
+training and development
+records management
+office administration
+
+# --- comms / engagement ---
+communications
+public relations
+media relations
+copywriting
+event management
+report writing
+presentation
+
+# --- soft / transferable ---
+project management
+leadership
+problem solving
+analytical thinking
+teamwork
+collaboration
+negotiation
+research
+attention to detail
+time management
+
+# --- engineering / ops ---
+project coordination
+quality assurance
+risk management
+process improvement
+facilities management
+supply chain
+logistics
+
+#upon first test, 87% coverage dont need to fatten yet using transformer upgrade like jobBERT

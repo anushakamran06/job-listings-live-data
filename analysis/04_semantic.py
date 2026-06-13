@@ -1,0 +1,1 @@
+#semantic search to basically give job recs according to overlapping skills (why did the embeddings matter)
